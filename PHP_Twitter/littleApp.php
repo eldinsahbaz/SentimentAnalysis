@@ -6,11 +6,7 @@
 <br>
 <br>
 <?php
-//echo "ss\\n";
 require_once('TwitterAPIExchange.php');
-//echo $_POST["name"];
-//echo $_POST["amount"]; 
-
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
 $settings = array(
     'oauth_access_token' => "375425960-EV9v2Cw6WApJPfEGyJzy9bDgPoTTe2xDlZzXujYF",
@@ -32,16 +28,14 @@ $string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
 ->performRequest(),$assoc = TRUE);
 //if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
-$file = 'test.txt';
+$file = 'output.txt';
 file_put_contents($file, "");
-//var_dump(json_decode($string));
 
 foreach($string as $items)
     {
         echo "Time and Date of Tweet: ".$items['created_at']."<br />";
         echo "Tweet: ". $items['text']."<br />";
         $current = file_get_contents($file);
-	//echo $current . "////";
 	$current = $current . $items['text'] ."\n";
 	file_put_contents($file, $current);
 	echo "Tweeted by: ". $items['user']['name']."<br />";
@@ -50,16 +44,7 @@ foreach($string as $items)
         echo "Friends: ". $items['user']['friends_count']."<br />";
         echo "Listed: ". $items['user']['listed_count']."<br /><hr />";
     }
-echo "<h2>Simple Twitter API Test 1112</h2>";
-//$file = 'test.txt';
-// Open the file to get existing content
-//$current = file_get_contents($file);
-// Append a new person to the file
-//echo $current;
-//$current = "John Smith\n";
-// Write the contents back to the file
-//file_put_contents($file, $current);
-//echo $current;
+echo "<h2>Simple Twitter API Test -- Twitter Handle</h2>";
 ?>
 
 </html>

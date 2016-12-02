@@ -6,14 +6,9 @@
 <br>
 <br>
 <?php
-//echo "ss\\n";
 require_once('TwitterAPIExchange.php');
 if (isset($_POST['name1']))  {$user = $_POST['name1'];}  else {$user  = "TheOnion";}
 if (isset($_POST['amount1'])) {$count = $_POST['amount1'];} else {$count = 5;}
-//echo $_POST['name1'];
-//echo $_POST['amount1'];
-
-
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
 $settings = array(
@@ -31,17 +26,9 @@ $twitter = new TwitterAPIExchange($settings);
 $string = json_decode($twitter->setGetfield($getfield)
              ->buildOauth($url, $requestMethod)
              ->performRequest(),$assoc = TRUE);
-//$response = $twitter->setGetfield($getfield)
-//    ->buildOauth($url, $requestMethod)
-//    ->performRequest();
-
-//var_dump(json_decode($response));
-//echo json_decode($response);
-
-//var_dump($string["statuses"]);
 
 //if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
-$file = 'test.txt';
+$file = 'output.txt';
 file_put_contents($file, "");
 
 foreach($string["statuses"] as $items)
@@ -49,9 +36,8 @@ foreach($string["statuses"] as $items)
 echo "Time and Date of Tweet: ".$items['created_at']."<br />";
    echo "Tweet: ". $items['text']."<br /><hr />";
    $current = file_get_contents($file);
-        //echo $current . "////";
-        $current = $current . $items['text'] ."\n";
-        file_put_contents($file, $current);
+   $current = $current . $items['text'] ."\n";
+   file_put_contents($file, $current);
 
 }
 
