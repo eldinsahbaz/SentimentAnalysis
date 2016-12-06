@@ -22,13 +22,13 @@ $user = $_POST["name"];
 $count = $_POST["amount"];
 //if (isset($_GET['user']))  {$user = $_GET['user'];}  else {$user  = "TheOnion";}
 //if (isset($_GET['count'])) {$count = $_GET['count'];} else {$count = 100;}
-$getfield = "?screen_name=$user&count=$count";
+$getfield = "?screen_name=$user&count=$count&lang=en";
 $twitter = new TwitterAPIExchange($settings);
 $string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
 ->performRequest(),$assoc = TRUE);
 //if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
-$file = 'output.txt';
+$file = 'test.txt';
 file_put_contents($file, "");
 
 foreach($string as $items)
