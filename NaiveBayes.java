@@ -281,33 +281,25 @@ class NaiveBayes {
         bw.close();
     }
 
-    public List<Integer> classifyFile(String Path)
+    public Map<String, Integer> classifyFile(String Path)
     {
-        List<Integer> classifications = new ArrayList<>();
+        Map<String, Integer> classifications = new HashMap<>();
         String line;
-        double pos = 0.0;
-        double neg = 0.0;
-        double total = 0.0;
+        
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Path));
 
             //read in data from file
             while ((line = reader.readLine()) != null)
             {
+                //classify a line of text
                 int n = analyze(line.replaceAll("[^a-zA-Z ]", " ").trim().toLowerCase());
+                
+                //add classification to map to return to user
                 classifications.add(n);
-                if(n == 1)
-                    pos++;
-                else
-                    neg++;
-
-                total++;
             }
 
             reader.close();
-
-            System.out.println("positive: " + pos/total);
-            System.out.println("negative: " + neg/total);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -359,16 +351,6 @@ class NaiveBayes {
             e.printStackTrace();
         }
 
-        //for debugging
-//        for (Entry<Integer, Set<List<String>>> entry : Wrong.entrySet()) {
-//            for (List<String> strings : entry.getValue()) {
-//                for (String str : strings) {
-//                    System.out.println(str);
-//                }
-//            }
-//        }
-//        System.out.println("total: " + total);
-
         return correct / total;
     }
 
@@ -417,10 +399,6 @@ class NaiveBayes {
                         probabilityForWord.put(word, prob);
                         probabilities.put(entry.getKey(), probabilityForWord);
                     }
-                }
-                //word in class but not in input string
-                else {
-
                 }
             }
         }
