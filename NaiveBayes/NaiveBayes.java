@@ -296,7 +296,7 @@ class NaiveBayes {
                 int n = analyze(line.replaceAll("[^a-zA-Z ]", " ").trim().toLowerCase());
                 
                 //add classification to map to return to user
-                classifications.add(n);
+                classifications.put(line, n);
             }
 
             reader.close();
