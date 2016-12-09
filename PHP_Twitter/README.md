@@ -12,6 +12,6 @@ After filling out one of the two forms, you will be redirected to either localho
 You will see the results of your query on the webpage, but in adition the output of just the 'text' (tweet) field will be added to the 
 output.txt file. Everytime you run the query the output file is refreshed, so it will only have the most recent query results.
 
-This can be utilyzed with the sentiment analyzer, because the output.txt file can be passed to the classifier to classify the tweets.
+This can be utilized with the sentiment analyzer, because the output.txt file can be passed to the classifier to classify the tweets.
 
 -Eli Goldweber
